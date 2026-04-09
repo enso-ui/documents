@@ -14,6 +14,7 @@
                         :compact="compact"
                         :params="params"
                         :url="uploadLink"
+                        :label="i18n('Upload')"
                         :file-size-limit="fileSizeLimit"
                         multiple
                         v-if="!disableUpload && uploadLink"
@@ -21,14 +22,14 @@
                 </p>
                 <p class="control has-icons-left has-icons-right is-expanded">
                     <input v-model="internalQuery"
-                        class="input is-small is-rounded"
+                        class="input is-small is-rounded documents-toolbar__search"
                         type="text"
                         :placeholder="i18n('Filter')">
-                    <span class="icon is-small is-left">
-                        <fa icon="search"/>
+                    <span class="icon is-small is-left has-text-muted">
+                        <fa :icon="faSearch"/>
                     </span>
                     <span v-if="internalQuery"
-                        class="icon is-small is-right clear-button"
+                        class="icon is-small is-right clear-button has-text-muted is-clickable"
                         @click="internalQuery = ''">
                         <a class="delete is-small"/>
                     </span>
@@ -40,7 +41,7 @@
                             {{ i18n('Reload') }}
                         </span>
                         <span class="icon">
-                            <fa icon="sync"/>
+                            <fa :icon="faArrowsRotate"/>
                         </span>
                     </a>
                 </p>
@@ -56,13 +57,10 @@
 
 <script>
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faSync, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsRotate, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { EnsoUploader } from '@enso-ui/uploader/bulma';
 import File from '@enso-ui/files/src/bulma/pages/files/components/File.vue';
 import debounce from 'lodash/debounce';
-
-library.add(faPlus, faSync, faSearch);
 
 export default {
     name: 'Documents',
@@ -108,6 +106,8 @@ export default {
 
     data: () => ({
         documents: [],
+        faArrowsRotate,
+        faSearch,
         loading: false,
         internalQuery: '',
     }),
@@ -173,8 +173,41 @@ export default {
 </script>
 
 <style lang="scss">
-    .documents-wrapper .controls {
-        display: flex;
-        justify-content: center;
+    .documents-wrapper {
+        .documents-toolbar__search {
+            background-color: var(--enso-filter-control-surface);
+            color: var(--bulma-input-color);
+
+            &::placeholder {
+                color: var(--bulma-text-light);
+            }
+        }
+
+        .field.is-grouped {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .control .file-icon,
+        .control .file-label {
+            color: inherit;
+        }
+
+        .clear-button {
+            .delete {
+                background-color: var(--bulma-scheme-main-ter);
+
+                &::before,
+                &::after {
+                    background-color: var(--bulma-text);
+                }
+            }
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+        }
     }
 </style>
