@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/documents",
-  "version": "4.2.3",
+  "version": "4.2.4",
   "description": "Documents",
   "main": "bulma/index.js",
   "repository": {
