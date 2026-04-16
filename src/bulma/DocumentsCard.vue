@@ -31,8 +31,8 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import {
     Card, CardHeader, CardRefresh, CardCollapse, CardBadge, CardContent,
 } from '@enso-ui/card/bulma';
+import { layout } from '@enso-ui/ui/src/pinia/layout';
 import Documents from './Documents.vue';
-import { useStore } from '../utils/pinia';
 
 export default {
     name: 'DocumentsCard',
@@ -80,7 +80,7 @@ export default {
 
     computed: {
         isMobile() {
-            return useStore('layout').isMobile;
+            return layout().isMobile;
         },
         isEmpty() {
             return this.count === 0;
