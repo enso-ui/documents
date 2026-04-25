@@ -25,11 +25,11 @@
                         class="input is-small is-rounded documents-toolbar__search"
                         type="text"
                         :placeholder="i18n('Filter')">
-                    <span class="icon is-small is-left has-text-muted">
+                    <span class="icon is-small is-left">
                         <fa :icon="faSearch"/>
                     </span>
                     <span v-if="internalQuery"
-                        class="icon is-small is-right clear-button has-text-muted is-clickable"
+                        class="icon is-small is-right clear-button is-clickable"
                         @click="internalQuery = ''">
                         <a class="delete is-small"/>
                     </span>
