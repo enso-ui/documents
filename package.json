@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/documents",
-  "version": "4.2.5",
+  "version": "4.2.6",
   "description": "Document list widgets and card wrappers for Enso UI.",
   "main": "bulma/index.js",
   "repository": {

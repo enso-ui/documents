@@ -10,7 +10,6 @@
             <div class="field is-grouped">
                 <p class="control">
                     <enso-uploader is-small
-                        is-rounded
                         :compact="compact"
                         :params="params"
                         :url="uploadLink"
@@ -22,7 +21,7 @@
                 </p>
                 <p class="control has-icons-left has-icons-right is-expanded">
                     <input v-model="internalQuery"
-                        class="input is-small is-rounded documents-toolbar__search"
+                        class="input is-small"
                         type="text"
                         :placeholder="i18n('Filter')">
                     <span class="icon is-small is-left">
@@ -35,7 +34,7 @@
                     </span>
                 </p>
                 <p class="control">
-                    <a class="button is-small is-rounded"
+                    <a class="button is-small"
                         @click="fetch()">
                         <span v-if="!compact">
                             {{ i18n('Reload') }}
@@ -47,8 +46,7 @@
                 </p>
             </div>
         </slot>
-        <file class="mx-a"
-            v-for="(document, index) in documents"
+        <item v-for="(document, index) in documents"
             :key="document.id"
             :file="document.file"
             @delete="destroy(index)"/>
@@ -59,14 +57,14 @@
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { faArrowsRotate, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { EnsoUploader } from '@enso-ui/uploader/bulma';
-import File from '@enso-ui/files/src/bulma/pages/files/components/File.vue';
+import Item from '@enso-ui/files/src/bulma/pages/files/components/Item.vue';
 import debounce from 'lodash/debounce';
 
 export default {
     name: 'Documents',
 
     components: {
-        Fa, File, EnsoUploader,
+        Fa, Item, EnsoUploader,
     },
 
     inject: ['errorHandler', 'i18n', 'http', 'route', 'canAccess'],
@@ -171,43 +169,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss">
-    .documents-wrapper {
-        .documents-toolbar__search {
-            background-color: var(--enso-filter-control-surface);
-            color: var(--bulma-input-color);
-
-            &::placeholder {
-                color: var(--bulma-text-light);
-            }
-        }
-
-        .field.is-grouped {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .control .file-icon,
-        .control .file-label {
-            color: inherit;
-        }
-
-        .clear-button {
-            .delete {
-                background-color: var(--bulma-scheme-main-ter);
-
-                &::before,
-                &::after {
-                    background-color: var(--bulma-text);
-                }
-            }
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-        }
-    }
-</style>
