@@ -58,7 +58,7 @@ import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { faArrowsRotate, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { EnsoUploader } from '@enso-ui/uploader/bulma';
 import Item from '@enso-ui/files/src/bulma/pages/files/components/Item.vue';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 
 export default {
     name: 'Documents',
